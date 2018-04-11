@@ -28,7 +28,7 @@ int main()
   }
   else
   {
-  cout<<"Scoreboard\n";
+  cout<<"SCOREBOARD\n";
   board.resize(teams);
 
    //make scoreboard and fill it with zeros
