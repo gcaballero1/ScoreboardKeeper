@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -7,9 +9,12 @@ const int MAX_PERIODS = 10;
 const int MAX_TEAMS = 4;
 const int MIN_PERIODS = 1;
 const int MIN_TEAMS = 1;
+void printScoreboard(vector < vector <int> >);
+int randomBetween (int, int);
 
 int main()
-{
+{ 
+  srand((int) time(0));
   int periods;
   int teams;
   vector < vector < int > > board;
@@ -28,7 +33,6 @@ int main()
   }
   else
   {
-  cout<<"SCOREBOARD\n";
   board.resize(teams);
 
    //make scoreboard and fill it with zeros
@@ -39,15 +43,54 @@ int main()
 
    for (int r=0; r < board.size(); r++)
    {
-     cout<< "Player " <<r+1<<": ";
      for (int c=0; c < board[r].size(); c++)
      {
        board[r][c] = 0;
-       cout<<board[r][c]<<"|";
      }
-     cout<<endl;
      }
    //once created, display the scoreboard
+
+   printScoreboard(board);
+
+   for (int r=0; r < board.size(); r++)
+   {
+     for (int c=0; c < board[r].size(); c++)
+     {
+       board[r][c]=randomBetween(5,5);
+     }
+   }
+
+   printScoreboard(board);
+}
+return 0;
+}
+
+  int randomBetween(int first, int second)
+  {
+    if (first>second)
+    {
+      return second + rand()%(first-second+1);
+    }
+
+    else
+    {
+      return first + rand()%(second-first+1);
+    }
   }
-  return 0;
+
+  void printScoreboard(vector < vector <int> > grid)
+  {
+    cout<<"SCOREBOARD\n";
+
+    for (int r=0; r < grid.size(); r++)
+    {
+      cout<<"Player "<<r+1<<": ";
+      for (int c=0; c < grid[r].size(); c++)
+      {
+        cout<<grid[r][c]<<"|";
+      }
+    cout<<endl;
+    }
+
+   
 }
